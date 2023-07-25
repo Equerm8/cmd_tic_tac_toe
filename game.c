@@ -43,7 +43,7 @@ char check_win(char board[3][3]){
 void game(Player p1, Player p2, char board[3][3], char option, char currentGameState[]){
 
     board_clear(board);
-    bool end = false;
+    bool end = false; bool m = false;
     int row, column;
     char winner;
     char moveCounter = '1';
@@ -60,6 +60,7 @@ void game(Player p1, Player p2, char board[3][3], char option, char currentGameS
     while(!end){
 
         system("cls");
+        printf("Type 0 to go back to menu\n\n");
         printf("MOVE %c\n\n", moveCounter);
         create_board(board);
 
@@ -68,10 +69,22 @@ void game(Player p1, Player p2, char board[3][3], char option, char currentGameS
             printf("\nType choosen coordinates");
             printf("\nROW: ");
             scanf("%d", &row);
-            printf("COLUMN: ");
+            if(row == 0){
+                end = true;
+                m = true;
+                option = '1';
+                continue;
+            }
+            else if(row < 1 || row > 3) continue;
+            printf("\nCOLUMN: ");
             scanf("%d", &column);
-            if(row < 1 || row > 3 || column < 1 || column > 3) continue;
-            //while ((enter = getchar()) != '\n' && enter != EOF) {}
+            if(column == 0){
+                end = true;
+                m = true;
+                option = '1';
+                continue;
+            }
+            else if(column < 1 || column > 3) continue;
             if(board[row-1][column-1] != ' ') continue;
             board[row-1][column-1] = p1.symbol;
             currTurn = false;
@@ -82,10 +95,22 @@ void game(Player p1, Player p2, char board[3][3], char option, char currentGameS
             printf("\nType choosen coordinates");
             printf("\nROW: ");
             scanf("%d", &row);
+            if(row == 0){
+                end = true;
+                m = true;
+                option = '1';
+                continue;
+            }
+            if(row < 1 || row > 3) continue;
             printf("COLUMN: ");
             scanf("%d", &column);
-            if(row < 1 || row > 3 || column < 1 || column > 3) continue;
-            //while ((enter = getchar()) != '\n' && enter != EOF) {}
+            if(column == 0){
+                end = true;
+                m = true;
+                option = '1';
+                continue;
+            }
+            if(column < 1 || column > 3) continue;
             if(board[row-1][column-1] != ' ') continue;
             board[row-1][column-1] = p2.symbol;
             currTurn = true;
@@ -97,13 +122,15 @@ void game(Player p1, Player p2, char board[3][3], char option, char currentGameS
     }
 
     do{
-        system("cls");
-        create_board(board);
-        if(winner) printf("\n!!! PLAYER %c HAS WON AFTER %c MOVES!!!\n\n", winner, moveCounter);
-        else printf("\nTIE\n");
-        printf("\n1. Menu | 2. Restart | 3. Analyze | 4. Exit\n");
-        printf("Option: ");
-        scanf("%c", &option);
+        if(!m){
+            system("cls");
+            create_board(board);
+            if(winner) printf("\n!!! PLAYER %c HAS WON AFTER %c MOVES!!!\n\n", winner, moveCounter);
+            else printf("\nTIE\n");
+            printf("\n1. Menu | 2. Restart | 3. Exit\n");
+            printf("Option: ");
+            scanf("%c", &option);
+        }
         switch(option){
             case '1':
                 strcpy(currentGameState, "menu");
@@ -114,12 +141,8 @@ void game(Player p1, Player p2, char board[3][3], char option, char currentGameS
                 break;
 
             case '3':
-                strcpy(currentGameState, "analyze");
-                break;
-            
-            case '4':
                 strcpy(currentGameState, "exit");
                 break;
         }
-    }while((int)option < 49 || (int)option > 52);
+    }while((int)option < 49 || (int)option > 51);
 }

@@ -58,10 +58,6 @@ int main(){
             game(p1, p2, board, option, currentGameState);
         }
 
-        else if(strcmp(currentGameState, "load") == 0){
-            return 0;
-        }
-
         else if(strcmp(currentGameState, "settings") == 0){
             settings();
         }
@@ -116,31 +112,27 @@ int main(){
 
 // Menu, settings etc.
 void menu(){
-    char menuOptions[] = "1_START 2_LOAD_GAME 3_SETTINGS 4_EXIT";
+    char menuOptions[] = "1_START 2_SETTINGS 3_EXIT";
 
     do{
         system("cls");
         printf("M E N U\n\n");
-        create_buttons(4, menuOptions);
+        create_buttons(3, menuOptions);
         scanf("%c", &option);
         switch(option){
             case '1':
                 strcpy(currentGameState, "game");
                 break;
-            
-            case '2':
-                strcpy(currentGameState, "load");
-                break;
 
-            case '3':
+            case '2':
                 strcpy(currentGameState, "settings");
                 break;
             
-            case '4':
+            case '3':
                 strcpy(currentGameState, "exit");
                 break;
         }
-    }while((int)option < 49 || (int)option > 52);
+    }while((int)option < 49 || (int)option > 51);
     
 }
 

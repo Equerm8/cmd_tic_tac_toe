@@ -4,9 +4,9 @@
 void create_board(char board[3][3]){
     printf("   1   2   3 ", board[0][0], board[0][1], board[0][2]);
     printf("\n1  %c | %c | %c ", board[0][0], board[0][1], board[0][2]);
-    printf("\n  ---|---|----");
+    printf("\n  ---|---|---");
     printf("\n2  %c | %c | %c ", board[1][0], board[1][1], board[1][2]);
-    printf("\n  ---|---|----");
+    printf("\n  ---|---|---");
     printf("\n3  %c | %c | %c \n", board[2][0], board[2][1], board[2][2]);
 }
 
