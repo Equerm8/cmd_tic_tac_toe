@@ -27,8 +27,8 @@ char board[3][3] = {{' ', ' ', ' '},
                     {' ', ' ', ' '}};
 
 // Initializing players
-Player p1 = {'X', "", 0, 1};
-Player p2 = {'O', "", 0, 0};
+Player p1 = {'X', 1};
+Player p2 = {'O', 0};
 
 
 // All related to the menu
